@@ -161,7 +161,7 @@ const BasicTypography = () => {
         <Col md={12}>
           <Card>
             <Card.Header>
-              <Card.Title as="h5">Contextual Text Colors</Card.Title>
+              <Card.Title as="h5">Manisha and Damini</Card.Title>
             </Card.Header>
             <Card.Body>
               <Card.Text className="text-muted mb-1">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</Card.Text>
