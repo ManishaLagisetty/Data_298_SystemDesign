@@ -1,8 +1,10 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
 from PIL import Image
 import io
+from pydantic import BaseModel
+import pandas as pd
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -19,7 +21,22 @@ app.add_middleware(
 # Load the pre-built YOLOv8 model (e.g., 'yolov8s.pt')
 model = YOLO('yolov8s.pt')  # This will automatically download the model if not available locally
 
-# Define a route for prediction
+# Define the response model using Pydantic for validation
+class LocationData(BaseModel):
+    latitude: float
+    longitude: float
+    zipcode: int
+    severity: int
+
+
+
+pothole_df = pd.read_csv('pothole_data.csv')
+pothole_data = pothole_df.to_dict(orient='records')
+
+
+
+
+# Define a route for image prediction
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     try:
@@ -54,3 +71,10 @@ async def predict(file: UploadFile = File(...)):
 
     except Exception as e:
         return {"error": str(e)}
+
+@app.get("/map_data", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return pothole_data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

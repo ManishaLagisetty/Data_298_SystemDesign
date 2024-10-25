@@ -14,7 +14,7 @@ const ImageDetectionComponent = ({ apiEndpoint, placeholderImage }) => {
   return (
     <React.Fragment>
       <Row className="mt-4">
-        <Col md={6}>
+        <Col>
           <Card>
             <Card.Body>
               <div style={{ position: 'relative', width: '100%', height: '400px' }}>
