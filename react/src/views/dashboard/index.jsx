@@ -9,7 +9,7 @@ import Card from '../../components/Card/MainCard';
 
 // ==============================|| BUTTON ||============================== //
 
-const BasicButton = () => {
+const Overview = () => {
   const buttonVariants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'];
 
   const buttonOptions = [
@@ -171,4 +171,4 @@ const BasicButton = () => {
   );
 };
 
-export default BasicButton;
+export default Overview;

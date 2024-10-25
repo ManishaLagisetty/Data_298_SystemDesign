@@ -14,7 +14,7 @@ import imgGrid5 from '../../assets/images/gallery-grid/car.jpg';
 import imgGrid6 from '../../assets/images/gallery-grid/chart.gif';
 // ==============================|| TYPOGRAPHY ||============================== //
 
-const BasicTypography = () => {
+const HomePage = () => {
   return (
     <React.Fragment>
       <Row> 
@@ -238,4 +238,4 @@ const BasicTypography = () => {
   );
 };
 
-export default BasicTypography;
+export default HomePage;

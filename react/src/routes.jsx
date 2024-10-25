@@ -56,44 +56,38 @@ export const routes = [
     routes: [
       {
         exact: 'true',
-        path: '/car-accidents',
-        element: lazy(() => import('./views/dashboard'))
+        path: '/home',
+        element: lazy(() => import('./views/ui-elements/HomePage'))
       },
       {
         exact: 'true',
         path: '/dashboard',
-        element: lazy(() => import('./views/ui-elements/BasicButton'))
+        element: lazy(() => import('./views/ui-elements/Overview'))
       },
       {
         exact: 'true',
         path: '/pothole-detection',
-        element: lazy(() => import('./views/ui-elements/BasicBadges'))
+        element: lazy(() => import('./views/ui-elements/PotholeDetection'))
       },
       {
         exact: 'true',
         path: '/crack-detection',
-        element: lazy(() => import('./views/ui-elements/BasicBreadcrumbPagination'))
+        element: lazy(() => import('./views/ui-elements/CrackDetection'))
       },
       {
         exact: 'true',
         path: '/illegal-dumping',
-        element: lazy(() => import('./views/ui-elements/BasicCollapse'))
+        element: lazy(() => import('./views/ui-elements/IllegalDumping'))
       },
-
       {
         exact: 'true',
-        path: '/home',
-        element: lazy(() => import('./views/ui-elements/BasicTypography'))
+        path: '/car-accidents',
+        element: lazy(() => import('./views/ui-elements/CarAccident'))
       },
       {
         exact: 'true',
         path: '/wildlife-detection',
-        element: lazy(() => import('./views/ui-elements/BasicTooltipsPopovers'))
-      },
-      {
-        exact: 'true',
-        path: '/sample-page',
-        element: lazy(() => import('./views/extra/SamplePage'))
+        element: lazy(() => import('./views/ui-elements/WildlifeDetection'))
       },
       {
         path: '*',
