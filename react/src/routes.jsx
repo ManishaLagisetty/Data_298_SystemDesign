@@ -66,27 +66,27 @@ export const routes = [
       },
       {
         exact: 'true',
-        path: '/pothole-detection',
+        path: '/pothole_detection',
         element: lazy(() => import('./views/ui-elements/PotholeDetection'))
       },
       {
         exact: 'true',
-        path: '/crack-detection',
+        path: '/crack_detection',
         element: lazy(() => import('./views/ui-elements/CrackDetection'))
       },
       {
         exact: 'true',
-        path: '/illegal-dumping',
+        path: '/illegal_dumping',
         element: lazy(() => import('./views/ui-elements/IllegalDumping'))
       },
       {
         exact: 'true',
-        path: '/car-accidents',
+        path: '/car_accidents',
         element: lazy(() => import('./views/ui-elements/CarAccident'))
       },
       {
         exact: 'true',
-        path: '/wildlife-detection',
+        path: '/wildlife_detection',
         element: lazy(() => import('./views/ui-elements/WildlifeDetection'))
       },
       {

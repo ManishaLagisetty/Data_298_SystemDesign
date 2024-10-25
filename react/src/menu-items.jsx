@@ -37,31 +37,31 @@ const menuItems = {
               id: 'badges',
               title: 'Pothole Detection',
               type: 'item',
-              url: '/pothole-detection'
+              url: '/pothole_detection'
             },
             {
               id: 'breadcrumb-pagination',
               title: 'Crack Detection',
               type: 'item',
-              url: '/crack-detection'
+              url: '/crack_detection'
             },
             {
               id: 'collapse',
               title: 'Illegal Dumping',
               type: 'item',
-              url: '/illegal-dumping'
+              url: '/illegal_dumping'
             },
             {
               id: 'dashboard',
               title: 'Car Accidents',
               type: 'item',
-              url: '/car-accidents'
+              url: '/car_accidents'
             },
             {
               id: 'tooltip-popovers',
               title: 'Wildlife Detection',
               type: 'item',
-              url: '/wildlife-detection'
+              url: '/wildlife_detection'
             }
           ]
         }
