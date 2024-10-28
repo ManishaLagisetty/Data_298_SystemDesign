@@ -110,7 +110,7 @@ const menuItems = {
       children: [
         {
           id: 'sample-page',
-          title: 'Sample Page',
+          title: 'Quick Review',
           type: 'item',
           url: '/sample-page',
           classes: 'nav-item',
@@ -118,13 +118,13 @@ const menuItems = {
         },
         {
           id: 'documentation',
-          title: 'Documentation',
+          title: 'About Us',
           type: 'item',
           icon: 'feather icon-help-circle',
           classes: 'nav-item',
-          url: 'https://codedthemes.gitbook.io/gradient-able-react/',
-          target: true,
-          external: true
+          url: '/about-us',
+          target: false,
+          external: false
         }
       ]
     }

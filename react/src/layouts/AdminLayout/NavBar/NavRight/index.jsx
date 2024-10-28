@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 // react-bootstrap
 import { ListGroup, Dropdown, Card } from 'react-bootstrap';
@@ -20,8 +20,17 @@ import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
 
 const NavRight = () => {
   const [listOpen, setListOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const notiData = [
+
+// Logout handler
+const handleLogout = () => {
+  localStorage.removeItem('token'); // Clear user session data
+  navigate('/login'); // Redirect to /login
+};
+
+
+  {/*const notiData = [
     {
       name: 'Joseph William',
       image: avatar2,
@@ -40,12 +49,12 @@ const NavRight = () => {
       details: 'Purchase New Theme and make payment',
       activity: 'yesterday'
     }
-  ];
+  ]; */}
 
   return (
     <React.Fragment>
       <ListGroup as="ul" bsPrefix=" " className="navbar-nav ml-auto">
-        <ListGroup.Item as="li" bsPrefix=" ">
+        {/*<ListGroup.Item as="li" bsPrefix=" ">
           <Dropdown align="end">
             <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
               <i className="feather icon-bell icon" />
@@ -120,8 +129,8 @@ const NavRight = () => {
               </div>
             </Dropdown.Menu>
           </Dropdown>
-        </ListGroup.Item>
-        <ListGroup.Item as="li" bsPrefix=" ">
+        </ListGroup.Item>*/}
+         {/*<ListGroup.Item as="li" bsPrefix=" ">
           <Dropdown>
             <Dropdown.Toggle as={Link} variant="link" to="#" className="displayChatbox" onClick={() => setListOpen(true)}>
               <i className="icon feather icon-mail" />
@@ -130,8 +139,8 @@ const NavRight = () => {
               </span>
             </Dropdown.Toggle>
           </Dropdown>
-        </ListGroup.Item>
-        <ListGroup.Item as="li" bsPrefix=" ">
+        </ListGroup.Item>*/}
+       {/* <ListGroup.Item as="li" bsPrefix=" ">
           <Dropdown align="end" className="drp-user">
             <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
               <img src={avatar1} className="img-radius wid-40" alt="User Profile" />
@@ -173,9 +182,39 @@ const NavRight = () => {
               </ListGroup>
             </Dropdown.Menu>
           </Dropdown>
+        </ListGroup.Item>*/}
+    <ListGroup.Item as="li" bsPrefix=" ">
+          <Dropdown align="end" className="drp-user">
+          <Dropdown.Toggle as="div" variant="link" style={{ cursor: 'pointer' }} onClick={handleLogout}>
+              <div className="profile-notification" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: 20 }}>
+                
+                <span>Logout</span>
+                <i className="feather icon-log-out" />
+              </div>
+            </Dropdown.Toggle>
+
+           {/*  <Dropdown.Toggle as={Link} variant="link" to="#" id="dropdown-basic">
+              <img src={avatar1} className="img-radius wid-40" alt="User Profile" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu align="end" className="profile-notification">
+              <div className="pro-head">
+                <img src={avatar1} className="img-radius" alt="User Profile" />
+                <span>Cindrella</span>
+                <div onClick={handleLogout} className="dud-logout" title="Logout" style={{ cursor: 'pointer' }}>
+                  <i className="feather icon-log-out" />
+                </div>
+              </div>
+              <ListGroup as="ul" bsPrefix=" " variant="flush" className="pro-body">
+                <ListGroup.Item as="li" bsPrefix=" ">
+                  <div onClick={handleLogout} className="dropdown-item" style={{ cursor: 'pointer' }}>
+                    <i className="feather icon-log-out" style={{ marginRight: '10px' }} /> Logout
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
+            </Dropdown.Menu>*/}
+          </Dropdown>
         </ListGroup.Item>
       </ListGroup>
-      <ChatList listOpen={listOpen} closed={() => setListOpen(false)} />
     </React.Fragment>
   );
 };

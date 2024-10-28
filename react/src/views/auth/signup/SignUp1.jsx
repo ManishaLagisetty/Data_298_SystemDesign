@@ -33,12 +33,12 @@ const SignUp1 = () => {
                   <div className="input-group mb-4">
                     <input type="password" className="form-control" placeholder="Password" />
                   </div>
-                  <div className="custom-control custom-checkbox  text-start mb-4 mt-2">
+                 {/* <div className="custom-control custom-checkbox  text-start mb-4 mt-2">
                     <input type="checkbox" className="custom-control-input" id="customCheck1" defaultChecked={false} />
                     <label className="custom-control-label mx-2" htmlFor="customCheck1">
                       Send me the <Link to="#"> Newsletter</Link> weekly.
                     </label>
-                  </div>
+                  </div>*/}
                   <button className="btn btn-primary btn-block mb-4">Sign up</button>
                   <p className="mb-2">
                     Already have an account?{' '}

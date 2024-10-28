@@ -47,9 +47,19 @@ export const routes = [
   },
   {
     exact: 'true',
+    path: '/login',
+    element: lazy(() => import('./views/auth/signin/SignIn1'))
+  },  
+  {
+    exact: 'true',
     path: '/auth/reset-password-1',
     element: lazy(() => import('./views/auth/reset-password/ResetPassword1'))
   },
+  {
+    exact: true,
+    path: '/about-us',
+    element: lazy(() => import('./views/auth/aboutus/AboutUs'))
+  },  
   {
     path: '*',
     layout: AdminLayout,
@@ -63,7 +73,7 @@ export const routes = [
         exact: 'true',
         path: '/dashboard',
         element: lazy(() => import('./views/ui-elements/Overview'))
-      },
+      },    
       {
         exact: 'true',
         path: '/pothole_detection',
