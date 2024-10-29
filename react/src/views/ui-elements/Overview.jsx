@@ -136,10 +136,10 @@ const DashAnalytics = () => {
       <Row className="mt-4">
         <Col md={6}>
           <Card>
-            <Card.Body style={{ height: '500px' }}>
-              <h5>Severity Levels Across Categories</h5>
-              <div style={{ height: '400px' }}>
-                <Pie data={pieChartData} />
+          <Card.Body style={{ height: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <h5>Severity Levels Across Categories</h5>
+      <div style={{ height: '400px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Pie data={pieChartData} />
               </div>
             </Card.Body>
           </Card>
