@@ -17,6 +17,12 @@ import imgGrid6 from '../../assets/images/gallery-grid/chart.gif';
 const HomePage = () => {
   return (
     <React.Fragment>
+      <Row className="mt-4">
+        {/* Website Heading */}
+        <Col sm={12} className="text-center mb-4">
+          <h1 style={{ fontWeight: 'bold', fontSize: '2.0rem', color: '#2c3e50', fontStyle: 'italic' }}>Welcome To TransportIQ - A Transport Management System</h1>
+        </Col>
+      </Row>
       <Row> 
         <Col sm={12}>
           <Card>
