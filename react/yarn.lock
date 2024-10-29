@@ -1254,6 +1254,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@kurkle/color@^0.3.0":
+  "integrity" "sha512-fuscdXJ9G1qb7W8VdHi+IwRqij3lBkosAm4ydQtEmbY58OzHXqQhvlxqEkoz0yssNVn38bcpRWgA9PP+OGoisw=="
+  "resolved" "https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz"
+  "version" "0.3.2"
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   "integrity" "sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg=="
   "resolved" "https://registry.npmjs.org/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz"
@@ -2185,6 +2190,13 @@
   dependencies:
     "ansi-styles" "^4.1.0"
     "supports-color" "^7.1.0"
+
+"chart.js@^4.1.1", "chart.js@^4.4.6":
+  "integrity" "sha512-8Y406zevUPbbIBA/HRk33khEmQPk5+cxeflWE/2rx1NJsjVWMPw/9mSP9rxHP5eqi6LNoPBVMfZHxbwLSgldYA=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-4.4.6.tgz"
+  "version" "4.4.6"
+  dependencies:
+    "@kurkle/color" "^0.3.0"
 
 "chokidar@>=3.0.0 <4.0.0":
   "integrity" "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="
@@ -3692,7 +3704,12 @@
   dependencies:
     "language-subtag-registry" "^0.3.20"
 
-"leaflet@^1.9.0", "leaflet@^1.9.4":
+"leaflet-extra-markers@^1.2.2":
+  "integrity" "sha512-LQUicXhyOwq0wOFtEftJg9IzAGcQI+6mHgh3wsVntrid149BTqsEgh1UcxPPtzcL7xt8jXY0rssfz7DUZuQudg=="
+  "resolved" "https://registry.npmjs.org/leaflet-extra-markers/-/leaflet-extra-markers-1.2.2.tgz"
+  "version" "1.2.2"
+
+"leaflet@^1.9.0", "leaflet@^1.9.4", "leaflet@>= 0.5 < 2":
   "integrity" "sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA=="
   "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.9.4.tgz"
   "version" "1.9.4"
@@ -4193,6 +4210,11 @@
     "react-transition-group" "^4.4.5"
     "uncontrollable" "^7.2.1"
     "warning" "^4.0.3"
+
+"react-chartjs-2@^5.2.0":
+  "integrity" "sha512-98iN5aguJyVSxp5U3CblRLH67J8gkfyGNbiK3c+l1QI/G4irHMPQw44aEPmjVag+YKTyQ260NcF82GTQ3bdscA=="
+  "resolved" "https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-5.2.0.tgz"
+  "version" "5.2.0"
 
 "react-copy-to-clipboard@^5.1.0":
   "integrity" "sha512-k61RsNgAayIJNoy9yDsYzDe/yAZAzEbEgcz3DZMhF686LEyukcE1hzurxe85JandPUG+yTfGVFzuEw3xt8WP/A=="

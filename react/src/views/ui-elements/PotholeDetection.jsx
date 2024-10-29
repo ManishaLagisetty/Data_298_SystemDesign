@@ -13,7 +13,9 @@ const PotholeDetection = () => (
         />
       </Col>
       <Col md={6}>
-        <MapDisplayComponent/>
+        <MapDisplayComponent
+        apiEndpoint="http://127.0.0.1:8000/map_data/pothole/"
+        />
       </Col>
     </Row>
   </React.Fragment>

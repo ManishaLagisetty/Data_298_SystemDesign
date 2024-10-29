@@ -28,12 +28,11 @@ class LocationData(BaseModel):
     zipcode: int
     severity: int
 
-
-
 pothole_df = pd.read_csv('pothole_data.csv')
 pothole_data = pothole_df.to_dict(orient='records')
 
-
+illegal_dumping_df = pd.read_csv('illegal_dumping_data.csv')
+illegal_dumping_data = illegal_dumping_df.to_dict(orient='records')
 
 
 # Define a route for image prediction
@@ -72,9 +71,37 @@ async def predict(file: UploadFile = File(...)):
     except Exception as e:
         return {"error": str(e)}
 
-@app.get("/map_data", response_model=list[LocationData])
+@app.get("/map_data/pothole/", response_model=list[LocationData])
 def get_map_data():
     try:
         return pothole_data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/map_data/illegal_dumping/", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return illegal_dumping_data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/map_data/crack/", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return []
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/map_data/car_accident/", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return []
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/map_data/wildlife/", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

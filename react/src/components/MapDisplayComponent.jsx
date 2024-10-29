@@ -2,27 +2,43 @@ import React, { useEffect, useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css';
 import L from 'leaflet';
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet-extra-markers/dist/js/leaflet.extra-markers';
 
-// Custom marker icon to avoid missing icon issues
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-});
+// Custom marker icon based on severity
+const severityIcons = {
+  1: L.ExtraMarkers.icon({
+    icon: 'fa-number',
+    number: '1',
+    markerColor: 'green',
+    shape: 'circle',
+    prefix: 'fa',
+  }),
+  2: L.ExtraMarkers.icon({
+    icon: 'fa-number',
+    number: '2',
+    markerColor: 'orange',
+    shape: 'circle',
+    prefix: 'fa',
+  }),
+  3: L.ExtraMarkers.icon({
+    icon: 'fa-number',
+    number: '3',
+    markerColor: 'red',
+    shape: 'circle',
+    prefix: 'fa',
+  }),
+};
 
-const MapDisplayComponent = () => {
+const MapDisplayComponent = ({ apiEndpoint }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the Flask API
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/map_data');
+        const response = await fetch(apiEndpoint);
         const result = await response.json();
         setData(result);
       } catch (error) {
@@ -35,15 +51,16 @@ const MapDisplayComponent = () => {
   return (
     <React.Fragment>
       <Row className="mt-4">
-        <MapContainer center={[37.3382, -121.8863]} zoom={12} style={{ height: '400px', width: '100%' }}>
+        <MapContainer center={[37.3382, -121.8863]} zoom={12} style={{ height: '500px', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {data.map((item, index) => (
+          {data.slice(0, 500).map((item, index) => (
             <Marker
               key={index}
               position={[item.latitude, item.longitude]}
+              icon={severityIcons[item.severity] || severityIcons[1]} // Default to severity 1 icon if undefined
             >
               <Popup>
                 <div>
