@@ -14,7 +14,7 @@ const DashAnalytics = () => {
         <Card.Body>
           <Row className="d-flex justify-content-center">
             <Col md={4}>
-              <Card className="bg-danger text-white">
+              <Card className="bg-danger text-white style={{ minHeight: '140px' }}">
                 <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                   <h4>Red Zones Detected</h4>
                   <h2>2</h2>
@@ -22,7 +22,7 @@ const DashAnalytics = () => {
               </Card>
             </Col>
             <Col md={4}>
-              <Card className="bg-warning text-white">
+              <Card className="bg-warning text-white style={{ minHeight: '140px' }}">
                 <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                   <h4>Orange Zones Detected</h4>
                   <h2>30</h2>
@@ -30,7 +30,7 @@ const DashAnalytics = () => {
               </Card>
             </Col>
             <Col md={4}>
-              <Card className="bg-success text-white">
+              <Card className="bg-success text-white style={{ minHeight: '140px' }}">
                 <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                   <h4>Green Zones Detected</h4>
                   <h2>104</h2>
