@@ -96,6 +96,11 @@ export const routes = [
       },
       {
         exact: 'true',
+        path: '/construction',
+        element: lazy(() => import('./views/ui-elements/Construction'))
+      },
+      {
+        exact: 'true',
         path: '/wildlife_detection',
         element: lazy(() => import('./views/ui-elements/WildlifeDetection'))
       },

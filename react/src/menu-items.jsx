@@ -58,6 +58,12 @@ const menuItems = {
               url: '/car_accidents'
             },
             {
+              id: 'button',
+              title: 'Construction',
+              type: 'item',
+              url: '/construction'
+            },
+            {
               id: 'tooltip-popovers',
               title: 'Wildlife Detection',
               type: 'item',
