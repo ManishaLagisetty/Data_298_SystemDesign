@@ -13,7 +13,7 @@ const DashAnalytics = () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/map_data/illegal_dumping/');
         const data = await response.json();
-        const limitedData = data.slice(0, 500);
+        const limitedData = data;
 
         const severityCount = limitedData.reduce(
           (acc, item) => {

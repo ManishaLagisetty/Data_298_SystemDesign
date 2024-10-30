@@ -18,7 +18,7 @@ const PotholeDetection = () => {
         const data = await response.json();
 
         // Process data to add random months and calculate severity counts
-        const processedData = data.slice(0, 500).map((item) => ({
+        const processedData = data.map((item) => ({
           ...item,
           month: getMonthNumber(getRandomDate(new Date(2024, 0, 1), new Date())),
         }));
