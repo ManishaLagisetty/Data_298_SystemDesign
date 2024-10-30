@@ -3,6 +3,8 @@ import { Row, Col } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 import ImageDetectionComponent from '../../components/ImageDetectionComponent';
 import MapDisplayComponent from '../../components/MapDisplayComponent';
+import { chartOptions, monthNames } from '../../config/constant';
+import { getMonthNumber, getRandomDate} from '../../store/dateProcessing';
 import 'chart.js/auto';
 
 const IllegalDumping = () => {
@@ -39,71 +41,50 @@ const IllegalDumping = () => {
     fetchSeverityData();
   }, []);
 
-  // Utility to calculate month number from a date
-  const getMonthNumber = (date) => {
-    const startOfYear = new Date(date.getFullYear(), 0, 1);
-    const diff = date - startOfYear;
-    return Math.ceil((diff / (1000 * 60 * 60 * 24) + startOfYear.getDay() + 1) / 30);
-  };
-
-  // Generate random date within a range
-  const getRandomDate = (start, end) => {
-    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-    return isNaN(date.getTime()) ? new Date() : date; // Default to current date if invalid
-  };
+  const catgeoryName = 'Illegal Dumping';
+  const lowSeverityLabel = 'Low ' + catgeoryName;
+  const mediumSeverityLabel = 'Medium ' + catgeoryName;
+  const highSeverityLabel = 'High ' + catgeoryName;
 
   // Prepare data for line chart grouped by month
-  const monthlySeverityData = {};
+  const monthlySeverityData = Array.from({ length: 12 }, () => ({ severity1: 0, severity2: 0, severity3: 0 }));
   severityData.forEach((entry) => {
-    const monthLabel = `Month ${entry.month}`;
-    if (!monthlySeverityData[monthLabel]) {
-      monthlySeverityData[monthLabel] = { severity1: 0, severity2: 0, severity3: 0 };
+    const monthIndex = entry.month - 1; // Convert month (1-12) to array index (0-11)
+    if (monthIndex >= 0 && monthIndex < 12) {
+      if (entry.severity === 1) monthlySeverityData[monthIndex].severity1++;
+      else if (entry.severity === 2) monthlySeverityData[monthIndex].severity2++;
+      else if (entry.severity === 3) monthlySeverityData[monthIndex].severity3++;
     }
-    if (entry.severity === 1) monthlySeverityData[monthLabel].severity1++;
-    else if (entry.severity === 2) monthlySeverityData[monthLabel].severity2++;
-    else if (entry.severity === 3) monthlySeverityData[monthLabel].severity3++;
   });
 
   const lineChartData = {
-    labels: Object.keys(monthlySeverityData),
+    labels: monthNames, // Use month names as x-axis labels
     datasets: [
       {
-        label: 'Severity 1',
+        label: lowSeverityLabel,
         borderColor: 'green',
         fill: false,
-        data: Object.values(monthlySeverityData).map((month) => month.severity1),
+        data: monthlySeverityData.map((month) => month.severity1),
       },
       {
-        label: 'Severity 2',
+        label: mediumSeverityLabel,
         borderColor: 'orange',
         fill: false,
-        data: Object.values(monthlySeverityData).map((month) => month.severity2),
+        data: monthlySeverityData.map((month) => month.severity2),
       },
       {
-        label: 'Severity 3',
+        label: highSeverityLabel,
         borderColor: 'red',
         fill: false,
-        data: Object.values(monthlySeverityData).map((month) => month.severity3),
+        data: monthlySeverityData.map((month) => month.severity3),
       },
     ],
   };
-  
-  const chartOptions = {
-    responsive: false,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-        suggestedMin: 0,  // Minimum value for y-axis
-        suggestedMax: 30, // Maximum value for y-axis; adjust based on expected range
-      },
-    },
-  };
 
   const severityStyles = {
-    1: { color: 'green', label: 'Low Illegal Dumping' },
-    2: { color: 'orange', label: 'Medium Illegal Dumping' },
-    3: { color: 'red', label: 'High Illegal Dumping' },
+    1: { color: 'green', label: lowSeverityLabel },
+    2: { color: 'orange', label: mediumSeverityLabel },
+    3: { color: 'red', label: highSeverityLabel },
   };
 
   return (
@@ -123,22 +104,21 @@ const IllegalDumping = () => {
       </Row>
 
       <Row className="mt-5">
-        {/* Line Chart Visualization */}
-        <Col md={6}>
-          <h5>Severity Levels by Month</h5>
+        <Col md={6} style={{ height: '200px' }}> {/* Adjust the height as needed */}
+          <h5 className="text-center">{catgeoryName} Severity Levels by Month</h5>
           <Line data={lineChartData} options={chartOptions} />
         </Col>
 
         {/* Severity Count Visualization */}
         <Col md={6}>
-          <h5>Severity Level Counts</h5>
+          <h5 className="text-center">{catgeoryName} Severity Level Counts</h5>
           <Row className="justify-content-center">
-            {Object.entries(severityCount).map(([level, count]) => (
-              <Col key={level} xs={4} className="text-center">
+            {Object.entries(severityCount).map(([level, count], index) => (
+              <Col key={`severity-${level}-${index}`} xs={4} className="text-center">
                 <div
                   style={{
-                    width: '80px',
-                    height: '80px',
+                    width: '150px',
+                    height: '150px',
                     borderRadius: '50%',
                     backgroundColor: severityStyles[level].color,
                     color: 'white',
