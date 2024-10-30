@@ -105,3 +105,10 @@ def get_map_data():
         return []
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/map_data/construction/", response_model=list[LocationData])
+def get_map_data():
+    try:
+        return []
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
