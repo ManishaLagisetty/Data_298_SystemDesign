@@ -60,7 +60,7 @@ const MapDisplayComponent = ({ apiEndpoint }) => {
             <Marker
               key={index}
               position={[item.latitude, item.longitude]}
-              icon={severityIcons[item.severity] || severityIcons[1]} // Default to severity 1 icon if undefined
+              icon={severityIcons[item.severity] || severityIcons[1]}
             >
               <Popup>
                 <div>

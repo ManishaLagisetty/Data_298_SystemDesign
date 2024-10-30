@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
 from PIL import Image
@@ -18,8 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load the pre-built YOLOv8 model (e.g., 'yolov8s.pt')
-model = YOLO('yolov8s.pt')  # This will automatically download the model if not available locally
+yolo_class_dict = {0: 'pothole', 1: 'crack', 2: 'crash', 3: '-', 4: 'animal', 5: 'construction', 6: 'garbage'}
+garbage_model = YOLO('yolov8_trained_model_finaled.pt', task='detect')
 
 # Define the response model using Pydantic for validation
 class LocationData(BaseModel):
@@ -28,8 +28,17 @@ class LocationData(BaseModel):
     zipcode: int
     severity: int
 
-pothole_df = pd.read_csv('pothole_data.csv')
+pothole_df = pd.read_csv('pothole_dash_map.csv')
 pothole_data = pothole_df.to_dict(orient='records')
+
+vehicle_df = pd.read_csv('vehicle_dash_map.csv')
+vehicle_data = vehicle_df.to_dict(orient='records')
+
+construction_df = pd.read_csv('construction_dash_map.csv')
+construction_data = construction_df.to_dict(orient='records')
+
+animal_df = pd.read_csv('animal_dash_map.csv')
+animal_data = animal_df.to_dict(orient='records')
 
 illegal_dumping_df = pd.read_csv('illegal_dumping_data.csv')
 illegal_dumping_data = illegal_dumping_df.to_dict(orient='records')
@@ -37,36 +46,28 @@ illegal_dumping_data = illegal_dumping_df.to_dict(orient='records')
 
 # Define a route for image prediction
 @app.post("/predict/")
-async def predict(file: UploadFile = File(...)):
+async def predict(file: UploadFile = File(...), target_class: int = Query(..., ge=0, le=6)):
     try:
         # Read the image file
         image = Image.open(io.BytesIO(await file.read()))
+        
+        results = garbage_model(image)
+        predictions = []
 
-        # Run inference using YOLOv8 model
-        results = model(image)
-
-        # Filter out predictions to include only cars (class ID might differ)
-        # For COCO dataset, 'car' typically corresponds to class ID 2. Adjust if needed.
-        car_class_id = 2  # Adjust this ID based on your model's label mapping
-        car_predictions = []
-
-        # Extract predictions related to cars
         for result in results:
             for box in result.boxes:
                 class_id = int(box.cls[0])
-                if class_id == car_class_id:
-                    car_predictions.append({
+                if class_id == target_class:
+                    predictions.append({
                         "xmin": box.xyxy[0][0].item(),
                         "ymin": box.xyxy[0][1].item(),
                         "xmax": box.xyxy[0][2].item(),
                         "ymax": box.xyxy[0][3].item(),
                         "confidence": box.conf[0].item(),
                         "class": class_id,
-                        "name": model.names[class_id]  # Get the class name using the model's labels
+                        "name": garbage_model.names[class_id]
                     })
-
-        # Return predictions related to cars in JSON format
-        return {"predictions": car_predictions}
+        return {"predictions": predictions}
 
     except Exception as e:
         return {"error": str(e)}
@@ -74,7 +75,7 @@ async def predict(file: UploadFile = File(...)):
 @app.get("/map_data/pothole/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return pothole_data
+        return pothole_data[0:500]
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -88,27 +89,27 @@ def get_map_data():
 @app.get("/map_data/crack/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return []
+        return pothole_data[500:]
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
 @app.get("/map_data/car_accident/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return []
+        return vehicle_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/map_data/wildlife/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return []
+        return animal_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/map_data/construction/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return []
+        return construction_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
