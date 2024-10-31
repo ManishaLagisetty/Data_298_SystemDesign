@@ -105,7 +105,7 @@ const CrackDetection = () => {
 
       <Row className="mt-5">
         <Col md={6} style={{ height: '200px' }}> {/* Adjust the height as needed */}
-          <h5 className="text-center">{catgeoryName} Severity Levels by Month</h5>
+          <h5 className="text-center">{catgeoryName} test Severity Levels by Month</h5>
           <Line data={lineChartData} options={chartOptions} />
         </Col>
 
