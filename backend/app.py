@@ -31,6 +31,9 @@ class LocationData(BaseModel):
 pothole_df = pd.read_csv('pothole_dash_map.csv')
 pothole_data = pothole_df.to_dict(orient='records')
 
+crack_df = pd.read_csv('crack_dash_map.csv')
+crack_data = pothole_df.to_dict(orient='records')
+
 vehicle_df = pd.read_csv('vehicle_dash_map.csv')
 vehicle_data = vehicle_df.to_dict(orient='records')
 
@@ -89,7 +92,7 @@ def get_map_data():
 @app.get("/map_data/crack/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return pothole_data
+        return crack_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
