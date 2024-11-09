@@ -10,11 +10,12 @@ import 'chart.js/auto';
 const PotholeDetection = () => {
   const [severityData, setSeverityData] = useState([]);
   const [severityCount, setSeverityCount] = useState({ 1: 0, 2: 0, 3: 0 });
+  const dataURL = "http://127.0.0.1:8000/map_data/pothole/";
 
   useEffect(() => {
     const fetchSeverityData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/map_data/pothole/');
+        const response = await fetch(dataURL);
         const data = await response.json();
 
         // Process data to add random months and calculate severity counts
@@ -98,7 +99,7 @@ const PotholeDetection = () => {
         </Col>
         <Col md={6}>
           <MapDisplayComponent
-            apiEndpoint="http://127.0.0.1:8000/map_data/pothole/"
+            apiEndpoint={dataURL}
           />
         </Col>
       </Row>

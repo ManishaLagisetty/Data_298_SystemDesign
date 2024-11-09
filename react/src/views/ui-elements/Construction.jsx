@@ -10,11 +10,12 @@ import 'chart.js/auto';
 const Construction = () => {
   const [severityData, setSeverityData] = useState([]);
   const [severityCount, setSeverityCount] = useState({ 1: 0, 2: 0, 3: 0 });
+  const dataURL = "http://127.0.0.1:8000/map_data/construction/";
 
   useEffect(() => {
     const fetchSeverityData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/map_data/construction/');
+        const response = await fetch(dataURL);
         const data = await response.json();
 
         // Process data to add random months and calculate severity counts
@@ -98,7 +99,7 @@ const Construction = () => {
         </Col>
         <Col md={6}>
           <MapDisplayComponent
-            apiEndpoint="http://127.0.0.1:8000/map_data/construction/"
+            apiEndpoint={dataURL}
           />
         </Col>
       </Row>

@@ -75,7 +75,7 @@ async def predict(file: UploadFile = File(...), target_class: int = Query(..., g
 @app.get("/map_data/pothole/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return pothole_data[0:500]
+        return pothole_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -89,7 +89,7 @@ def get_map_data():
 @app.get("/map_data/crack/", response_model=list[LocationData])
 def get_map_data():
     try:
-        return pothole_data[500:]
+        return pothole_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
