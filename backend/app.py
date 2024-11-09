@@ -32,7 +32,7 @@ pothole_df = pd.read_csv('pothole_dash_map.csv')
 pothole_data = pothole_df.to_dict(orient='records')
 
 crack_df = pd.read_csv('crack_dash_map.csv')
-crack_data = pothole_df.to_dict(orient='records')
+crack_data = crack_df.to_dict(orient='records')
 
 vehicle_df = pd.read_csv('vehicle_dash_map.csv')
 vehicle_data = vehicle_df.to_dict(orient='records')
