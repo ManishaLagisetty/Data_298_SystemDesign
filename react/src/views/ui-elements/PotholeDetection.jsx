@@ -93,7 +93,7 @@ const PotholeDetection = () => {
       <Row>
         <Col md={6}>
           <ImageDetectionComponent
-            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=0" 
+            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=4" 
             placeholderImage="src/assets/images/pothole_2.jpg"
           />
         </Col>

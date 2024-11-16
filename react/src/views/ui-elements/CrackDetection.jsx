@@ -93,7 +93,7 @@ const CrackDetection = () => {
       <Row>
         <Col md={6}>
           <ImageDetectionComponent
-            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=1" 
+            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=5" 
             placeholderImage="src/assets/images/crack.jpg"
           />
         </Col>
