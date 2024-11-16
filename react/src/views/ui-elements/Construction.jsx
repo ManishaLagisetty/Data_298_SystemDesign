@@ -93,7 +93,7 @@ const Construction = () => {
       <Row>
         <Col md={6}>
           <ImageDetectionComponent
-            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=5" 
+            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=2" 
             placeholderImage="src/assets/images/construction.jpg"
           />
         </Col>

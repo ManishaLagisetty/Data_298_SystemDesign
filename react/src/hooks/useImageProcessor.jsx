@@ -81,7 +81,7 @@ const useImageProcessor = (apiEndpoint) => {
         const boxWidth = xmax - xmin;
         const boxHeight = ymax - ymin;
         ctx.strokeRect(xmin, ymin, boxWidth, boxHeight);
-        const label = `${name} (${(confidence * 100).toFixed(1)}%)`;
+        const label = `${name}`;
         ctx.fillText(label, xmin, ymin > 10 ? ymin - 5 : 10);
       });
     }

@@ -93,7 +93,7 @@ const CarAccident = () => {
       <Row>
         <Col md={6}>
           <ImageDetectionComponent
-            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=2" 
+            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=1" 
             placeholderImage="src/assets/images/car_accident.jpg"
           />
         </Col>

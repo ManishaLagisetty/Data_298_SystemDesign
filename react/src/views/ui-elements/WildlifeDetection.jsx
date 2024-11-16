@@ -93,7 +93,7 @@ const WildlifeDetection = () => {
       <Row>
         <Col md={6}>
           <ImageDetectionComponent
-            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=4" 
+            apiEndpoint="http://127.0.0.1:8000/predict/?target_class=0" 
             placeholderImage="src/assets/images/animal.png"
           />
         </Col>
